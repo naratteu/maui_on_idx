@@ -2,11 +2,12 @@
 # see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "unstable";
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.jdk17
     pkgs.unzip
+    pkgs.dotnetCorePackages.dotnet_9.sdk
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -18,7 +19,12 @@
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
-      onCreate = { };
+      onCreate = {
+        workload = "
+          dotnet workload config --update-mode workload-set
+          dotnet workload update
+          ";
+      };
       # To run something each time the workspace is (re)started, use the `onStart` hook
     };
     # Enable previews and customize configuration
