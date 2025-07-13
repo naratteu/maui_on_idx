@@ -14,7 +14,7 @@
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
-      "muhammad-sammy.csharp"
+      # "muhammad-sammy.csharp" # No space left on device..
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
