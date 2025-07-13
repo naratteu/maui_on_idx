@@ -6,7 +6,6 @@
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.jdk17
-    pkgs.unzip
     pkgs.dotnetCorePackages.dotnet_9.sdk
   ];
   # Sets environment variables in the workspace
@@ -29,6 +28,7 @@
         restore = "
           dotnet workload restore
           dotnet build -f net9.0-android -t:InstallAndroidDependencies -p:AndroidSdkDirectory=/home/user/.androidsdkroot -p:AcceptAndroidSdkLicenses=True
+          echo >> App.xaml.cs # watch trigger ..
           ";
       };
     };
